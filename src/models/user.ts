@@ -1,23 +1,34 @@
-import User from '../interface/user';
+import { GetUserQuery, User } from "../interface/user";
 
-const users = [
+const users: User[] = [
   {
+    name: "Bijen",
+    email: "Bijen@gmail.com",
+    password: "$2b$10$/.Fh4GGQrIZsZTBtTctgne6Hz9HkHX9NVPrW5fDU/6YbT8A7kP9PC",
     id: "1",
-    name:"User 1"
   },
-  {
-    id: "2",
-    name: "User 2"
-  }
 ];
 
-export function getUserById(id: string){
-  return users.find(({id: userId}) => userId === id);
+export function getUserById(id: string) {
+  return users.find(({ id: userId }) => userId === id);
 }
 
-export function createUser(user: User){
+export function createUser(user: User) {
   return users.push({
-    id:`${users.length + 1}`,
-    ...user
+    ...user,
+    id: `${users.length + 1}`,
   });
-};
+}
+
+export function getUsers(query: GetUserQuery) {
+  const { q } = query;
+
+  if (q) {
+    return users.filter(({ name }) => name === q);
+  }
+  return null;
+}
+
+export function getUserByEmail(email: string) {
+  return users.find(({ email: userEmail }) => userEmail === email);
+}

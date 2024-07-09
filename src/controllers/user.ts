@@ -1,28 +1,28 @@
 import { Request, Response } from "express";
-import * as UserService from '../services/user';
+import * as UserService from "../services/user";
+import { GetUserQuery } from "../interface/user";
 
-export function getUsers(req: Request, res: Response){
-  res.json({
-    message: "User get"
-  })
-};
+export function getUsers(
+  req: Request<any, any, any, GetUserQuery>,
+  res: Response,
+) {
+  const { query } = req;
 
-export function getUserById(req: Request, res: Response){
-  const { id } = req.params;
-  console.log(req.query);
-  console.log(req.body);
+  const data = UserService.getUsers(query);
 
-  const data = UserService.getUserById(id);
-  
-  res.json(data)
-};
-
-export function createUser(req: Request, res: Response){
-  const { body } = res;
-  console.log(body);
-
-  const data = UserService.createUser(body);
-
-  return data;
+  res.json(data);
 }
 
+export function getUserById(req: Request, res: Response) {
+  const { id } = req.params;
+  const data = UserService.getUserById(id);
+
+  res.json(data);
+}
+
+export async function createUser(req: Request, res: Response) {
+  const { body } = req;
+  const data = await UserService.createUser(body);
+
+  res.json({ data });
+}
