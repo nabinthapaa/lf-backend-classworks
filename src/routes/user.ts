@@ -1,11 +1,11 @@
 import express from "express";
 import { getUsers, getUserById, createUser } from "../controllers/user";
-import { auth } from "../middleware/auth";
+import { authenticate, authorize } from "../middleware/auth";
 
 const router = express();
 
-router.get("/", auth, getUsers);
-router.get("/:id", auth, getUserById);
+router.get("/", authenticate, authorize("users.get"), getUsers);
+router.get("/:id", authenticate, getUserById);
 
 router.post("/", createUser);
 

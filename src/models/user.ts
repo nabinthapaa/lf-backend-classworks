@@ -6,6 +6,7 @@ const users: User[] = [
     email: "Bijen@gmail.com",
     password: "$2b$10$/.Fh4GGQrIZsZTBtTctgne6Hz9HkHX9NVPrW5fDU/6YbT8A7kP9PC",
     id: "1",
+    permissions: ["users.get"],
   },
 ];
 
