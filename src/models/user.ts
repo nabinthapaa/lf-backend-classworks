@@ -26,7 +26,7 @@ export function getUsers(query: GetUserQuery) {
   if (q) {
     return users.filter(({ name }) => name === q);
   }
-  return null;
+  return users;
 }
 
 export function getUserByEmail(email: string) {
