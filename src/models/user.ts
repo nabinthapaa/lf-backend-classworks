@@ -1,6 +1,6 @@
 import { GetUserQuery, User } from "../interface/user";
 
-const users: User[] = [
+export const users: User[] = [
   {
     name: "Bijen",
     email: "Bijen@gmail.com",

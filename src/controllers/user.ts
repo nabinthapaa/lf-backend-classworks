@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import HttpStatusCodes from "http-status-codes";
 import { GetUserQuery } from "../interface/user";
 import * as UserService from "../services/user";
@@ -26,9 +26,16 @@ export function getUserById(req: Request, res: Response) {
   res.status(HttpStatusCodes.OK).json(data);
 }
 
-export async function createUser(req: Request, res: Response) {
+export async function createUser(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   const { body } = req;
-  const data = await UserService.createUser(body);
-
-  res.json({ data });
+  try {
+    const data = await UserService.createUser(body);
+    res.json({ data });
+  } catch (e) {
+    next();
+  }
 }

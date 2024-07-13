@@ -9,7 +9,7 @@
       "program": "${workspaceFolder}/src/controller/user.ts",
       "outFiles": ["${workspaceFolder}/**/*.js"],
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["start"],
+      "runtimeArgs": ["run", "dev"],
       "cwd": "${workspaceFolder}",
       "outputCapture": "std"
     }
